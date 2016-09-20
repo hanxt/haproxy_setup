@@ -58,6 +58,10 @@ rhstatus() {
  status haproxy 
 }
 
+check(){
+ $exec -c -f $config
+}
+
 
 # See how we were called. 
 case "$1" in 
@@ -73,8 +77,11 @@ case "$1" in
  status) 
         rhstatus 
         ;; 
+ check)
+        check
+        ;;
  *) 
-        echo $"Usage: haproxy {start|stop|restart|status}" 
+        echo $"Usage: haproxy {start|stop|restart|status|check}" 
         RETVAL=1 
 esac 
 exit $RETVAL 
